@@ -3,38 +3,47 @@
 # What is the largest prime factor of 600851475143
 
 import time
-import numpy as np
+import math
 
 start = time.time()
 ##########################################
 
 def is_prime(x):
-    for i in range(2, x//2):
-        if x%i == 0:
+    current = 2
+    upper = int(math.sqrt(x))
+
+    while current <= upper:
+        if x % current == 0:
             return False
-    
+        current += 1
+
     return True
 
-value = 600851475143 // 2 + 1
+def is_factor(value, factor):
+    if value % factor == 0:
+        return True
+    else:
+        return False
 
-prime = False
+number = 600851475143
+counter = 2
+max_factor = 0
 
-while prime == False:
-    if value%2 != 0:
-        if value%5 != 0: 
-            prime = is_prime(value)
+while number/counter > math.sqrt(number):
+    if number%counter == 0:
 
-    
-    value -= 1
+        if is_prime(number/counter) and (number/counter > max_factor):
+            max_factor = number/counter
 
-print(value + 1)
-        
-        
-    
+        if is_prime(counter) and (counter > max_factor):
+            max_factor = counter
 
+    counter +=1
 
-
-##########################################
+#################################
 finish = time.time()
 
-print(finish-start)
+print(max_factor)
+print(finish - start)
+
+
