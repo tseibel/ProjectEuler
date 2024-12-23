@@ -20,25 +20,39 @@ from functions import is_even
 start = time.time()
 ################################
 
-dict_values = {}
-value = 999999
 
-while value > 1:
+def seq(value):
     values = [value]
 
-    while values[-1] != 1:
+    while values[-1] >= value:#not in result_dict.keys():
+
         if is_even(values[-1]):
             values.append(values[-1] / 2)
         else:
             values.append(3 * values[-1] + 1)
 
-    result_dict = {values[i]: len(values) - i for i in range(len(values))}
+    return values
 
-    print(value)
-    value -= 1
+x = seq(1000000)
+print(x)
+
+"""
+value = 2
+result_dict = {1:1}
+while value < 5000:
+
+    values = seq(value)
+
+    dict = {values[i]: result_dict[values[-1]] + len(values) - i - 1 for i in range(len(values) - 1)}
+    #print('############')
+    #print(dict)
+    result_dict = result_dict | dict
+
+    #print(result_dict)
+    value += 1
 
 print(result_dict)
-
+"""
 #################################
 finish = time.time()
 
