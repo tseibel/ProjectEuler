@@ -18,3 +18,13 @@ def count_divisors(number):
                 divisors += 2
             
     return divisors
+
+def is_even(value):
+    if value == 1:
+        return False
+    
+    if value%2 == 0:
+        return True
+
+    else:
+        return False
